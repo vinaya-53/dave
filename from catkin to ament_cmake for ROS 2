@@ -1,0 +1,64 @@
+[1mdiff --git a/models/dave_worlds/CMakeLists.txt b/models/dave_worlds/CMakeLists.txt[m
+[1mindex b284b55..d068ab5 100644[m
+[1m--- a/models/dave_worlds/CMakeLists.txt[m
+[1m+++ b/models/dave_worlds/CMakeLists.txt[m
+[36m@@ -1,21 +1,14 @@[m
+[31m-cmake_minimum_required(VERSION 3.0.2)[m
+[32m+[m[32mcmake_minimum_required(VERSION 3.8)[m
+ project(dave_worlds)[m
+ [m
+[31m-if(NOT "${CMAKE_VERSION}" VERSION_LESS "3.16")[m
+[31m-    set(CMAKE_CXX_STANDARD 17)[m
+[31m-    set(CMAKE_CXX_STANDARD_REQUIRED ON)[m
+[31m-else()[m
+[31m-    add_compile_options(-std=c++11)[m
+[32m+[m[32mif(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")[m
+[32m+[m[32m  add_compile_options(-Wall -Wextra -Wpedantic)[m
+ endif()[m
+ [m
+[31m-find_package(catkin REQUIRED COMPONENTS[m
+[31m-  gazebo_plugins[m
+[31m-  uuv_sensor_ros_plugins[m
+[31m-  ds_sim)[m
+[31m-[m
+[31m-catkin_package()[m
+[32m+[m[32mfind_package(ament_cmake REQUIRED)[m
+ [m
+ install(DIRECTORY media worlds[m
+[31m-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}[m
+[32m+[m[32m        DESTINATION share/${PROJECT_NAME}[m
+         PATTERN "*~" EXCLUDE)[m
+ [m
+[32m+[m[32mament_package()[m
+[1mdiff --git a/models/dave_worlds/package.xml b/models/dave_worlds/package.xml[m
+[1mindex 8eb7f46..9bb79d4 100644[m
+[1m--- a/models/dave_worlds/package.xml[m
+[1m+++ b/models/dave_worlds/package.xml[m
+[36m@@ -1,5 +1,6 @@[m
+ <?xml version="1.0"?>[m
+[31m-<package format="2">[m
+[32m+[m[32m<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>[m
+[32m+[m[32m<package format="3">[m
+   <name>dave_worlds</name>[m
+   <version>3.1.1</version>[m
+   <description>The dave_worlds package</description>[m
+[36m@@ -7,15 +8,14 @@[m
+   <maintainer email="dtdavi1@nps.edu">dtdavis</maintainer>[m
+   <license>Apache 2.0</license>[m
+ [m
+[31m-  <buildtool_depend>catkin</buildtool_depend>[m
+[32m+[m[32m  <buildtool_depend>ament_cmake</buildtool_depend>[m
+ [m
+[31m-  <depend>gazebo_ros</depend>[m
+[31m-  <depend>uuv_sensor_ros_plugins</depend>[m
+[31m-  <depend>ds_sim</depend>[m
+[32m+[m[32m  <exec_depend>gazebo_ros</exec_depend>[m
+[32m+[m[32m  <exec_depend>uuv_sensor_ros_plugins</exec_depend>[m
+[32m+[m[32m  <exec_depend>ds_sim</exec_depend>[m
+ [m
+   <export>[m
+     <gazebo_ros gazebo_media_path="${prefix}/worlds"/>[m
+     <gazebo_ros gazebo_media_path="${prefix}/media"/>[m
+   </export>[m
+[31m-[m
+ </package>[m

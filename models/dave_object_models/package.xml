@@ -1,14 +1,16 @@
 <?xml version="1.0"?>
-<package format="2">
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>dave_object_models</name>
   <version>3.1.1</version>
   <description>The dave_object_models package</description>
   <maintainer email="dtdavi1@nps.edu">dtdavis</maintainer>
   <license>Apache 2.0</license>
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>gazebo_ros</depend>
+  <exec_depend>gazebo_ros</exec_depend>
+
   <export>
     <gazebo_ros gazebo_model_path="${prefix}/models"/>
     <gazebo_ros gazebo_media_path="${prefix}"/>
